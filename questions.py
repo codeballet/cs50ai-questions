@@ -89,7 +89,18 @@ def compute_idfs(documents):
     Any word that appears in at least one of the documents should be in the
     resulting dictionary.
     """
-    raise NotImplementedError
+    print(documents)
+
+    # count how many documents there are
+
+    # create a set of the words
+
+    # find out how many documents each word appears in
+
+    # calculate the inverse document frequency of each word as
+    # the ln(number of documents / number of documents in which the word appears)
+
+    # Return a dictionary mapping the words to their idf values
 
 
 def top_files(query, files, idfs, n):
