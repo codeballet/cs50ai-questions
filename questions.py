@@ -6,6 +6,7 @@ import string
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 # nltk.download('stopwords')
+# nltk.download('punkt')
 
 FILE_MATCHES = 1
 SENTENCE_MATCHES = 1
