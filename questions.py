@@ -1,3 +1,4 @@
+import math
 import nltk
 import os
 import sys
@@ -93,13 +94,32 @@ def compute_idfs(documents):
     print(documents)
 
     # count how many documents there are
+    documents_count = len(documents)
+    print(f'length of documents: {documents_count}')
 
     # create a set of the words
+    all_words = set()
+    for words in documents.values():
+        all_words.update(words)
+    print(f'all_words: {all_words}')
 
     # find out how many documents each word appears in
+    word_doc_count = {}
+    for word in all_words:
+        count = 0
+        for document in documents:
+            if word in documents[document]:
+                count += 1
+        word_doc_count[word] = count
+    print(f'word_doc_count: {word_doc_count}')
 
     # calculate the inverse document frequency of each word as
     # the ln(number of documents / number of documents in which the word appears)
+    idfs = {}
+    for word, count in word_doc_count.items():
+        idf = math.log(documents_count / count)
+        idfs[word] = idf
+    print(f'difs: {idfs}')
 
     # Return a dictionary mapping the words to their idf values
 
