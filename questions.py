@@ -6,6 +6,8 @@ import string
 
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
+
+# enable if not already downloaded
 # nltk.download('stopwords')
 # nltk.download('punkt')
 
