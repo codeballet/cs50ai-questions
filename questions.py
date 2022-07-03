@@ -122,6 +122,7 @@ def compute_idfs(documents):
     print(f'difs: {idfs}')
 
     # Return a dictionary mapping the words to their idf values
+    return idfs
 
 
 def top_files(query, files, idfs, n):
