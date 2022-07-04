@@ -60,6 +60,7 @@ def load_files(directory):
     """
     contents = {}
     
+    # for files in given directory, create dictionary with {filename: text}
     for file in os.listdir(directory):
         with open(os.path.join(directory, file)) as f:
             contents[file] = f.read()
@@ -74,8 +75,10 @@ def tokenize(document):
     Process document by coverting all words to lowercase, and removing any
     punctuation or English stopwords.
     """
+    # tokenize document
     tokens_list = word_tokenize(document)
 
+    # make lower case; filter out punctuation and stopwords
     filtered_tokens_list = [
         word.lower() for word in tokens_list if 
         word not in string.punctuation and 
@@ -116,7 +119,7 @@ def compute_idfs(documents):
     print(f'word_doc_count: {word_doc_count}')
 
     # calculate the inverse document frequency of each word as
-    # the ln(number of documents / number of documents in which the word appears)
+    # ln(total number of documents / number of documents containing word)
     idfs = {}
     for word, count in word_doc_count.items():
         idf = math.log(documents_count / count)
