@@ -131,8 +131,38 @@ def top_files(query, files, idfs, n):
     to their IDF values), return a list of the filenames of the the `n` top
     files that match the query, ranked according to tf-idf.
     """
-    raise NotImplementedError
+    # calculate the sum of tf-idf values of the query for each file
+    tf_idf_files = []
+    tf_idf_values = []
 
+    for file in files:
+        # calculate the sum of tf-idf values for each file
+        tf = 0
+        tf_idf_sum = 0
+        for term in query:
+            for word in files[file]:
+                if term == word:
+                    tf += 1
+            tf_idf_sum += tf * idfs[term]
+
+        tf_idf_files.append(file)
+        tf_idf_values.append(tf_idf_sum)
+
+    # make a list of files ordered by total tf-idf value
+    files_ordered = []
+
+    while len(tf_idf_files) > 0:
+        i = tf_idf_values.index(max(tf_idf_values))
+        if n > 0:
+            # only add n elements to the list
+            files_ordered.append(tf_idf_files[i])
+            n -= 1
+            if n == 0:
+                break
+        del tf_idf_files[i]
+        del tf_idf_values[i]
+
+    return files_ordered
 
 def top_sentences(query, sentences, idfs, n):
     """
