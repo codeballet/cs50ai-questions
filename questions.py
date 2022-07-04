@@ -96,17 +96,13 @@ def compute_idfs(documents):
     Any word that appears in at least one of the documents should be in the
     resulting dictionary.
     """
-    print(documents)
-
     # count how many documents there are
     documents_count = len(documents)
-    print(f'length of documents: {documents_count}')
 
     # create a set of the words
     all_words = set()
     for words in documents.values():
         all_words.update(words)
-    print(f'all_words: {all_words}')
 
     # find out how many documents each word appears in
     word_doc_count = {}
@@ -116,7 +112,6 @@ def compute_idfs(documents):
             if word in documents[document]:
                 count += 1
         word_doc_count[word] = count
-    print(f'word_doc_count: {word_doc_count}')
 
     # calculate the inverse document frequency of each word as
     # ln(total number of documents / number of documents containing word)
@@ -124,7 +119,6 @@ def compute_idfs(documents):
     for word, count in word_doc_count.items():
         idf = math.log(documents_count / count)
         idfs[word] = idf
-    print(f'difs: {idfs}')
 
     # Return a dictionary mapping the words to their idf values
     return idfs
