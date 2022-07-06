@@ -144,7 +144,7 @@ def top_files(query, files, idfs, n):
             for word in files[file]:
                 if term == word:
                     tf += 1
-            tf_idf_sum += tf * idfs[term]
+            tf_idf_sum += tf * idfs[word]
 
         tf_idf_files.append(file)
         tf_idf_values.append(tf_idf_sum)
