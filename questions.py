@@ -173,10 +173,6 @@ def top_sentences(query, sentences, idfs, n):
     the query, ranked according to idf. If there are ties, preference should
     be given to sentences that have a higher query term density.
     """
-    print(f'query:\n{query}\n')
-    print(f'sentences:\n{sentences}\n')
-    print(f'idfs:\n{idfs}\n')
-
     # calculate the sum of idfs for each sentence
     slist = []
     slist_idfs = []
@@ -194,8 +190,6 @@ def top_sentences(query, sentences, idfs, n):
     a = np.array(slist_idfs)
     # ties = np.argwhere(a == np.amax(a)).flatten().tolist()
     ties = np.flatnonzero(a == np.amax(a)).tolist()
-
-    print(f'ties: {ties}')
 
     # If there are ties, order sentences by Query Term Density
     # (proportion of words in sentence that is also in query)
@@ -235,9 +229,6 @@ def top_sentences(query, sentences, idfs, n):
         del slist[i]
         del slist_idfs[i]
 
-    print(f'slist:\n{slist}')
-    print(f'slist_ordered:\n{slist_ordered}')
-
     # remove sentences in qtd_sentences_ordered from slist_ordered
     for s in qtd_sentences_ordered:
         slist_ordered.remove(s)
@@ -245,15 +236,11 @@ def top_sentences(query, sentences, idfs, n):
     # merge the qtd_sentences_ordered list with slist_ordered
     total_ordered_list = qtd_sentences_ordered + slist_ordered
 
-    print(f'total list:\n{total_ordered_list}')
-
     # only return n elements of total_ordered_list
     n_list = []
 
     for i in range(n):
         n_list.append(total_ordered_list[i])
-
-    print(f'n_list:\n{n_list}')
 
     return n_list
 
