@@ -6,6 +6,7 @@ import string
 
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
+import numpy as np
 
 # enable if not already downloaded
 # nltk.download('stopwords')
@@ -172,8 +173,89 @@ def top_sentences(query, sentences, idfs, n):
     the query, ranked according to idf. If there are ties, preference should
     be given to sentences that have a higher query term density.
     """
-    raise NotImplementedError
+    print(f'query:\n{query}\n')
+    print(f'sentences:\n{sentences}\n')
+    print(f'idfs:\n{idfs}\n')
 
+    # calculate the sum of idfs for each sentence
+    slist = []
+    slist_idfs = []
+
+    for sentence, words in sentences.items():
+        sent_idf = 0
+        for word in words:
+            for term in query:
+                if word == term:
+                    sent_idf += idfs[word]
+        slist.append(sentence)
+        slist_idfs.append(sent_idf)
+
+    # check for ties of sentence idf values
+    a = np.array(slist_idfs)
+    # ties = np.argwhere(a == np.amax(a)).flatten().tolist()
+    ties = np.flatnonzero(a == np.amax(a)).tolist()
+
+    print(f'ties: {ties}')
+
+    # If there are ties, order sentences by Query Term Density
+    # (proportion of words in sentence that is also in query)
+    qtd_sentences = []
+    qtd_values = []
+
+    if len(ties) > 1:
+        for index in ties:
+            words_count = 0
+            terms_count = 0
+            for word in slist[index]:
+                # for each word in the sentence
+                words_count += 1
+                for term in query:
+                    if term == word:
+                        # check if word is in query
+                        terms_count += 1
+            # calculate the QTDs for sentences
+            qtd_sentences.append(slist[index])
+            qtd_values.append(terms_count / words_count)
+
+    # order the qtd_sentences according to descending QTD values
+    qtd_sentences_ordered = []
+
+    while len(qtd_sentences) > 0:
+        i = qtd_values.index(max(qtd_values))
+        qtd_sentences_ordered.append(qtd_sentences[i])
+        del qtd_sentences[i]
+        del qtd_values[i]
+    
+    # order the slist according to descending idf values
+    slist_ordered = []
+
+    while len(slist) > 0:
+        i = slist_idfs.index(max(slist_idfs))
+        slist_ordered.append(slist[i])
+        del slist[i]
+        del slist_idfs[i]
+
+    print(f'slist:\n{slist}')
+    print(f'slist_ordered:\n{slist_ordered}')
+
+    # remove sentences in qtd_sentences_ordered from slist_ordered
+    for s in qtd_sentences_ordered:
+        slist_ordered.remove(s)
+
+    # merge the qtd_sentences_ordered list with slist_ordered
+    total_ordered_list = qtd_sentences_ordered + slist_ordered
+
+    print(f'total list:\n{total_ordered_list}')
+
+    # only return n elements of total_ordered_list
+    n_list = []
+
+    for i in range(n):
+        n_list.append(total_ordered_list[i])
+
+    print(f'n_list:\n{n_list}')
+
+    return n_list
 
 if __name__ == "__main__":
     main()
