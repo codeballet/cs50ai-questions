@@ -22,15 +22,20 @@ Once a corpus is made available, start the AI by entering the command:
 python questions.py <path_to_corpus>
 ```
 
-For instance, if you want to use the included `corpus`, enter:
+For instance, if you want to use the included `corpus`, you may experience the following scenario:
 
 ```
-python questions.py corpus
+$ python questions.py corpus
+Query: What are the types of supervised learning?
+Learning classifier systems (LCS) are a family of rule-based machine learning algorithms that combine a discovery component, typically a genetic algorithm, with a learning component, performing either supervised learning, reinforcement learning, or unsupervised learning.
+Types of supervised learning algorithms include Active learning , classification and regression.
 ```
 
-## Expanding or changing the working knowledge of the AI
+## Expanding or customizing the working knowledge of the AI
 
 You may create your own corpus of `.txt` documents as you like.
+
+You may also change the variables `FILE_MATCHES` and `SENTENCES_MATCHES`, in order to modify how many documents will be matched for any given query, and how many sentences will be presented in the answer. However, I recommend keeping the `FILE_MATCHES` variable smaller or equal to the number of existing documents in your corpus, or you may experience undesired effects.
 
 ## Intellectual Property Rights
 
