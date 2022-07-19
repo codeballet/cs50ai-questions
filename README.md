@@ -16,7 +16,13 @@ More sophisticated question answering systems might employ other strategies (ana
 
 In order to run the AI, make sure you have a corpus of text documents available. For testing purposes, there are two corpora included in the repository: `corpus`, which contains a collection of text files on artificial intelligence gathered from wikipedia; and `my_corpus`, which contains two very short nonsense text files, used in the early stages of the development of the AI.
 
-Once a corpus is made available, start the AI by entering the command:
+Install the required libraries with the command:
+
+```
+pip install -r requirements.txt
+```
+
+Once a corpus is created, and the libraries installed, start the AI by entering the command:
 
 ```
 python questions.py <path_to_corpus>
