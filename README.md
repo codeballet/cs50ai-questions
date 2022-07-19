@@ -43,6 +43,14 @@ You may create your own corpus of `.txt` documents as you like.
 
 You may also change the variables `FILE_MATCHES` and `SENTENCES_MATCHES`, in order to modify how many documents will be matched for any given query, and how many sentences will be presented in the answer. However, I recommend keeping the `FILE_MATCHES` variable smaller or equal to the number of existing documents in your corpus, or you may experience undesired effects.
 
+# The algorithms: "tf-idf" and "query term density"
+
+The idf (inverse document frequency) is defined by taking the natural logarithm of the number of documents divided by the number of documents in which the query word appears.
+
+The tf-idf (term frequency - inverse document frequency) for a term is computed by multiplying the number of times the term appears in the document by the idf value for that term.
+
+Query term density is defined as the proportion of words in the sentence that are also words in the query. For example, if a sentence has 10 words, 3 of which are in the query, then the sentence’s query term density is 0.3.
+
 ## Intellectual Property Rights
 
 MIT
