@@ -14,7 +14,7 @@ More sophisticated question answering systems might employ other strategies (ana
 
 ## How to run the AI
 
-In order to run the AI, make sure you have a corpus of text documents available. For testing purposes, there are two corpora included in the repository: `corpus`, which contains a collection of text files on artificial intelligence gathered from wikipedia; and `my_corpus`, which contains two very short nonsense text files, used in the early stages of the development of the AI.
+In order to run the AI, make sure you have a corpus of text documents available. For testing purposes, there are two corpora included in the repository: `corpus_ai`, which contains a collection of text files on artificial intelligence gathered from wikipedia; and `corpus_dev`, which contains two very short nonsense text files, used in the early stages of the development of the AI.
 
 Install the required libraries with the command:
 
@@ -28,10 +28,10 @@ Once a corpus is created, and the libraries installed, start the AI by entering 
 python questions.py <path_to_corpus>
 ```
 
-For instance, if you want to use the included `corpus`, you may experience the following scenario:
+For instance, if you want to use the included `corpus_ai`, you may experience the following scenario:
 
 ```
-$ python questions.py corpus
+$ python questions.py corpus_ai
 Query: What are the types of supervised learning?
 Learning classifier systems (LCS) are a family of rule-based machine learning algorithms that combine a discovery component, typically a genetic algorithm, with a learning component, performing either supervised learning, reinforcement learning, or unsupervised learning.
 Types of supervised learning algorithms include Active learning , classification and regression.
